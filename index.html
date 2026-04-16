@@ -1,289 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Monitor Legal Colombia — Vibras Positivas HM</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --gold:#C9A84C;--gold-light:#E2C06A;--gold-dim:#8A6D2F;
-    --dark-bg:#0D0D0E;--dark-card:#1A1A1D;--dark-border:#2A2A2F;
-    --dark-border-gold:rgba(201,168,76,0.25);
-    --text-primary:#F0EAD6;--text-secondary:#9A8F7A;--text-muted:#5A5347;
-    --teal:#1D9E75;--teal-dim:rgba(29,158,117,0.15);
-    --blue-dim:rgba(55,138,221,0.15);--red-dim:rgba(226,75,74,0.12);--amber-dim:rgba(239,159,39,0.15);
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--dark-bg);color:var(--text-primary);font-family:'Source Serif 4',serif;font-size:16px;line-height:1.7;min-height:100vh}
-  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 10%,rgba(201,168,76,0.04) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(29,158,117,0.03) 0%,transparent 70%);pointer-events:none;z-index:0}
-  .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 1.5rem 4rem}
-  header{padding:3rem 0 2rem;border-bottom:1px solid var(--dark-border-gold);margin-bottom:2.5rem}
-  .orn{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem}
-  .orn-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
-  .orn-ico{font-size:18px;color:var(--gold);letter-spacing:8px}
-  header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--gold-light);letter-spacing:.02em;line-height:1.2;margin-bottom:.4rem}
-  header h1 span{color:var(--text-primary);font-weight:400}
-  header p{font-size:14px;color:var(--text-secondary);font-style:italic}
-  .hbadge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);border:1px solid rgba(29,158,117,0.3);border-radius:3px;padding:3px 8px;margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
-  .hbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monitor Legal Colombia — VIBRAS POSITIVAS HM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --gold:#C9A84C;--gold-light:#E2C06A;--gold-dim:#8A6D2F;
+            --dark-bg:#0D0D0E;--dark-card:#1A1A1D;--dark-border:#2A2A2F;
+            --dark-border-gold:rgba(201,168,76,0.25);
+            --text-primary:#F0EAD6;--text-secondary:#9A8F7A;--text-muted:#5A5347;
+            --teal:#1D9E75;--teal-dim:rgba(29,158,117,0.15);
+            --blue-dim:rgba(55,138,221,0.15);--red-dim:rgba(226,75,74,0.12);--amber-dim:rgba(239,159,39,0.15);
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{background:var(--dark-bg);color:var(--text-primary);font-family:'Source Serif 4',serif;font-size:16px;line-height:1.7;min-height:100vh}
+        body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 10%,rgba(201,168,76,0.04) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(29,158,117,0.03) 0%,transparent 70%);pointer-events:none;z-index:0}
+        .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 1.5rem 4rem}
+        header{padding:3rem 0 2rem;border-bottom:1px solid var(--dark-border-gold);margin-bottom:2.5rem}
+        .orn{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem}
+        .orn-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+        .orn-ico{font-size:18px;color:var(--gold);letter-spacing:8px}
+        header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--gold-light);letter-spacing:.02em;line-height:1.2;margin-bottom:.4rem}
+        header h1 span{color:var(--text-primary);font-weight:400}
+        header p{font-size:14px;color:var(--text-secondary);font-style:italic}
+        .hbadge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);border:1px solid rgba(29,158,117,0.3);border-radius:3px;padding:3px 8px;margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
+        
+        .api-box{background:var(--dark-card);border:1px solid var(--dark-border-gold);border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+        .api-box label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:8px}
+        .api-row{display:flex;gap:8px}
+        .api-box input{flex:1;background:var(--dark-bg);border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-primary);outline:none}
+        .btn-eye{background:transparent;border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace}
 
-  .api-box{background:var(--dark-card);border:1px solid var(--dark-border-gold);border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
-  .api-box label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:8px}
-  .api-row{display:flex;gap:8px}
-  .api-box input{flex:1;background:var(--dark-bg);border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-primary);outline:none;transition:border-color .2s}
-  .api-box input:focus{border-color:var(--gold-dim)}
-  .btn-eye{background:transparent;border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .2s}
-  .btn-eye:hover{border-color:var(--gold-dim);color:var(--gold)}
-  .api-hint{font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic}
-  .api-hint a{color:var(--gold-dim);text-decoration:none}
-  .api-hint a:hover{color:var(--gold)}
+        .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
+        .pill{padding:6px 14px;font-size:13px;border-radius:20px;border:1px solid var(--dark-border);background:transparent;color:var(--text-secondary);cursor:pointer;transition:all .2s}
+        .pill.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold-light);font-weight:600}
 
-  .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dim);margin-bottom:10px}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
-  .pill{padding:6px 14px;font-size:13px;border-radius:20px;border:1px solid var(--dark-border);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:'Source Serif 4',serif;transition:all .2s}
-  .pill:hover{border-color:var(--gold-dim);color:var(--gold-light)}
-  .pill.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold-light);font-weight:600}
+        .sw{display:flex;gap:10px;margin-bottom:1.5rem}
+        .sw input{flex:1;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;padding:10px 16px;color:var(--text-primary);outline:none}
+        .btn-q{padding:10px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;border-radius:6px;color:#0D0D0E;font-family:'Playfair Display',serif;font-weight:600;cursor:pointer}
 
-  .sw{display:flex;gap:10px;margin-bottom:1.5rem}
-  .sw input{flex:1;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;padding:10px 16px;font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-primary);outline:none;transition:border-color .2s}
-  .sw input::placeholder{color:var(--text-muted);font-style:italic}
-  .sw input:focus{border-color:var(--gold-dim)}
-  .btn-q{padding:10px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;border-radius:6px;color:#0D0D0E;font-family:'Playfair Display',serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;white-space:nowrap;letter-spacing:.03em}
-  .btn-q:hover{opacity:.88} .btn-q:active{transform:scale(.98)} .btn-q:disabled{opacity:.4;cursor:not-allowed}
+        .sbar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-secondary);margin-bottom:1.5rem}
+        .sdot.spin{background:var(--gold);animation:pulse 1s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .sbar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-secondary);margin-bottom:1.5rem;transition:border-color .3s}
-  .sbar.on{border-color:var(--gold-dim)}
-  .sdot{width:7px;height:7px;border-radius:50%;background:var(--text-muted);flex-shrink:0;transition:background .3s}
-  .sdot.ok{background:var(--teal)}
-  .sdot.spin{background:var(--gold);animation:pulse 1s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+        .norm-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:14px;position:relative;animation:fadeUp .35s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .ch{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+        .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-primary)}
+        .badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:3px;text-transform:uppercase}
+        .bl{background:var(--teal-dim);color:#5DCAA5;border:1px solid rgba(29,158,117,.2)}
+        .cs{font-size:14px;color:var(--text-secondary);font-style:italic}
+        .cl{display:inline-flex;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-decoration:none}
 
-  .norm-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .2s,transform .15s;animation:fadeUp .35s ease both}
-  .norm-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ca,var(--dark-border));transition:background .2s}
-  .norm-card:hover{border-color:var(--dark-border-gold);transform:translateX(3px)}
-  .norm-card:hover::before{background:var(--gold)}
-  .norm-card[data-t=ley]{--ca:#1D9E75} .norm-card[data-t=decreto]{--ca:#378ADD}
-  .norm-card[data-t=resolucion]{--ca:#EF9F27} .norm-card[data-t=circular]{--ca:#D85A30}
-  .norm-card:nth-child(1){animation-delay:.05s} .norm-card:nth-child(2){animation-delay:.12s}
-  .norm-card:nth-child(3){animation-delay:.19s} .norm-card:nth-child(4){animation-delay:.26s}
-  .norm-card:nth-child(5){animation-delay:.33s} .norm-card:nth-child(6){animation-delay:.40s}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        .div{display:flex;align-items:center;gap:10px;margin:2rem 0 1.5rem}
+        .dl{flex:1;height:1px;background:var(--dark-border)}
+        .dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase}
 
-  .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px}
-  .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-primary);line-height:1.4}
-  .badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:3px 9px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
-  .bl{background:var(--teal-dim);color:#5DCAA5;border:1px solid rgba(29,158,117,.2)}
-  .bd{background:var(--blue-dim);color:#85B7EB;border:1px solid rgba(55,138,221,.2)}
-  .br{background:var(--amber-dim);color:#FAC775;border:1px solid rgba(239,159,39,.2)}
-  .bc{background:var(--red-dim);color:#F0997B;border:1px solid rgba(216,90,48,.2)}
-  .bo{background:rgba(255,255,255,.04);color:var(--text-secondary);border:1px solid var(--dark-border)}
-  .cm{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
-  .cs{font-size:14px;color:var(--text-secondary);line-height:1.65;font-style:italic}
-  .cl{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-decoration:none;transition:color .2s}
-  .cl:hover{color:var(--gold)}
-
-  .empty{text-align:center;padding:4rem 1rem;color:var(--text-muted)}
-  .empty-ico{font-size:40px;display:block;margin-bottom:1rem;color:var(--gold-dim);opacity:.6}
-  .empty p{font-size:14px;font-style:italic}
-  .errbox{background:rgba(162,45,45,.1);border:1px solid rgba(162,45,45,.3);border-radius:6px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F09595;line-height:1.6;word-break:break-word}
-  .ctxbox{background:rgba(201,168,76,.06);border:1px solid var(--dark-border-gold);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--text-secondary);font-style:italic;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:8px}
-  .ctxbox::before{content:'§';color:var(--gold-dim);font-family:'Playfair Display',serif;font-size:18px;line-height:1;flex-shrink:0}
-
-  .div{display:flex;align-items:center;gap:10px;margin:2rem 0 1.5rem}
-  .dl{flex:1;height:1px;background:var(--dark-border)}
-  .dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em}
-
-  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--dark-border-gold);text-align:center}
-  .fo{color:var(--gold-dim);font-size:14px;margin-bottom:8px;letter-spacing:6px}
-  footer p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
-
-  @media(max-width:600px){.sw,.api-row{flex-direction:column}.ch{flex-direction:column;gap:6px}}
-</style>
+        footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--dark-border-gold);text-align:center}
+    </style>
 </head>
 <body>
 <div class="wrap">
+    <header>
+        <div class="orn"><div class="orn-line"></div><span class="orn-ico">⚖ ⚖ ⚖</span><div class="orn-line"></div></div>
+        <h1>Monitor Legal <span>Colombia</span></h1>
+        <p>Inteligencia Artificial aplicada al Derecho — VIBRAS POSITIVAS HM</p>
+        <div class="hbadge">Sistema Actualizado 2026</div>
+    </header>
 
-  <header>
-    <div class="orn"><div class="orn-line"></div><span class="orn-ico">⚖ ⚖ ⚖</span><div class="orn-line"></div></div>
-    <h1>Monitor Legal <span>Colombia</span></h1>
-    <p>Alertas de normas, leyes y decretos nuevos — búsqueda con inteligencia artificial en tiempo real</p>
-    <div class="hbadge">IA activa · Diario Oficial · Fuentes oficiales</div>
-  </header>
-
-  <div class="api-box">
-    <label>🔑 Clave API de Google Gemini (gratuita, sin tarjeta)</label>
-    <div class="api-row">
-      <input type="password" id="apiKey" placeholder="AIzaSy..." autocomplete="off" />
-      <button class="btn-eye" onclick="toggleKey()">Mostrar</button>
+    <div class="api-box">
+        <label>🔑 Configuración de IA (Google Gemini Key)</label>
+        <div class="api-row">
+            <input type="password" id="apiKey" placeholder="Pega tu API Key aquí..." />
+            <button class="btn-eye" onclick="toggleKey()">Ver</button>
+        </div>
     </div>
-    <p class="api-hint">Obtén tu clave gratis en <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com/app/apikey</a>. Se guarda solo en tu navegador.</p>
-  </div>
 
-  <div class="slabel">Categoría</div>
-  <div class="filters">
-    <button class="pill active" data-q="normas leyes decretos nuevos Colombia 2025 2026">Todas</button>
-    <button class="pill" data-q="leyes nuevas aprobadas Colombia Congreso 2025 2026">Leyes</button>
-    <button class="pill" data-q="decretos presidenciales nuevos Colombia 2025 2026">Decretos</button>
-    <button class="pill" data-q="resoluciones ministeriales nuevas Colombia 2025 2026">Resoluciones</button>
-    <button class="pill" data-q="normas laborales reforma laboral Colombia 2025 2026">Laboral</button>
-    <button class="pill" data-q="normas tributarias DIAN Colombia 2025 2026">Tributario</button>
-    <button class="pill" data-q="normas salud Minsalud Colombia 2025 2026">Salud</button>
-    <button class="pill" data-q="normas comerciales SIC Colombia 2025 2026">Comercial</button>
-    <button class="pill" data-q="normas pensional Colpensiones Colombia 2025 2026">Pensional</button>
-    <button class="pill" data-q="normas ambientales ANLA Colombia 2025 2026">Ambiental</button>
-  </div>
+    <div class="filters">
+        <button class="pill active" data-q="normas leyes decretos nuevos Colombia 2025 2026">Todas</button>
+        <button class="pill" data-q="reforma laboral y pensional Colombia 2025 2026">Laboral/Pensional</button>
+        <button class="pill" data-q="normas tributarias DIAN Colombia 2026">Tributario</button>
+    </div>
 
-  <div class="sw">
-    <input type="text" id="qInput" placeholder="Ej: reforma laboral 2025, resoluciones DIAN, ley de vivienda..." />
-    <button class="btn-q" id="btnQ" onclick="buscar()">Consultar</button>
-  </div>
+    <div class="sw">
+        <input type="text" id="qInput" placeholder="Búsqueda específica (ej: decretos minenergia)..." />
+        <button class="btn-q" id="btnQ" onclick="buscar()">Consultar</button>
+    </div>
 
-  <div class="sbar" id="sbar">
-    <div class="sdot" id="sdot"></div>
-    <span id="stxt">Selecciona una categoría o escribe una búsqueda para comenzar.</span>
-  </div>
+    <div class="sbar" id="sbar">
+        <span id="stxt">Listo para monitorear el Diario Oficial.</span>
+    </div>
 
-  <div id="results">
-    <div class="empty"><span class="empty-ico">⚖</span><p>Las normas más recientes aparecerán aquí.</p></div>
-  </div>
+    <div id="results"></div>
 
-  <div class="div"><div class="dl"></div><span class="dt">Vibras Positivas HM</span><div class="dl"></div></div>
+    <div class="div"><div class="dl"></div><span class="dt">VIBRAS POSITIVAS HM</span><div class="dl"></div></div>
 
-  <footer>
-    <div class="fo">§ § §</div>
-    <p>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados · Colombia 2026</p>
-    <p style="margin-top:4px;color:#3A3530">Esta app no reemplaza asesoría jurídica profesional</p>
-  </footer>
-
+    <footer>
+        <p>© 2026 VIBRAS POSITIVAS HM — Derechos de Autor Reservados</p>
+        <p style="font-size:9px; margin-top:10px; color:var(--text-muted)">PROYECTO DESARROLLADO BAJO LOS ESTÁNDARES DE VIBRAS POSITIVAS</p>
+    </footer>
 </div>
+
 <script>
-const GURL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent';
-let qActual = 'normas leyes decretos nuevos Colombia 2025 2026';
+    const GURL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent';
+    let qActual = 'normas leyes decretos nuevos Colombia 2025 2026';
 
-document.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
-  b.classList.add('active');
-  qActual = b.dataset.q;
-  document.getElementById('qInput').value = '';
-}));
+    document.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        qActual = b.dataset.q;
+    }));
 
-document.getElementById('qInput').addEventListener('keydown', e => { if(e.key==='Enter') buscar(); });
-
-function toggleKey() {
-  const i = document.getElementById('apiKey');
-  i.type = i.type === 'password' ? 'text' : 'password';
-}
-
-function getKey() {
-  const k = document.getElementById('apiKey').value.trim();
-  if(k){ localStorage.setItem('vphm_gk', k); return k; }
-  return localStorage.getItem('vphm_gk') || '';
-}
-
-function setS(txt, mode) {
-  document.getElementById('stxt').textContent = txt;
-  const d = document.getElementById('sdot');
-  const b = document.getElementById('sbar');
-  d.className = 'sdot';
-  b.classList.remove('on');
-  if(mode==='spin'){ d.classList.add('spin'); b.classList.add('on'); }
-  if(mode==='ok'){ d.classList.add('ok'); b.classList.add('on'); }
-}
-
-function badgeClass(t) {
-  t = (t||'').toLowerCase();
-  if(t.includes('ley')) return 'bl';
-  if(t.includes('decreto')) return 'bd';
-  if(t.includes('resoluci')) return 'br';
-  if(t.includes('circular')) return 'bc';
-  return 'bo';
-}
-function dataT(t) {
-  t = (t||'').toLowerCase();
-  if(t.includes('ley')) return 'ley';
-  if(t.includes('decreto')) return 'decreto';
-  if(t.includes('resoluci')) return 'resolucion';
-  if(t.includes('circular')) return 'circular';
-  return 'otro';
-}
-
-async function buscar() {
-  const q = document.getElementById('qInput').value.trim() || qActual;
-  const key = getKey();
-  if(!key){ setS('Ingresa tu clave API de Google Gemini para continuar.'); document.getElementById('apiKey').focus(); return; }
-
-  document.getElementById('btnQ').disabled = true;
-  setS('Consultando normas recientes con IA...', 'spin');
-  document.getElementById('results').innerHTML = '';
-
-  const prompt = `Eres experto en legislación colombiana. Lista normas recientes relacionadas con: "${q}"
-Fecha: 16 abril 2026.
-Responde SOLO con JSON puro sin texto ni backticks:
-{"normas":[{"tipo":"Ley|Decreto|Resolución|Circular|Acuerdo","numero":"","fecha":"","entidad":"","titulo":"","resumen":"2-3 oraciones sobre qué regula y su impacto","url":""}],"contexto":""}
-Entre 4 y 6 normas de 2023-2026. Indica si alguna está en trámite.`;
-
-  try {
-    const res = await fetch(GURL + '?key=' + key, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        contents:[{parts:[{text:prompt}]}],
-        generationConfig:{temperature:0.3,maxOutputTokens:1500}
-      })
-    });
-
-    const data = await res.json();
-
-    if(!res.ok){
-      const m = data.error?.message || data.error?.status || JSON.stringify(data).slice(0,250);
-      throw new Error('HTTP ' + res.status + ': ' + m);
+    function toggleKey() {
+        const i = document.getElementById('apiKey');
+        i.type = i.type === 'password' ? 'text' : 'password';
     }
 
-    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if(!raw) throw new Error('Sin respuesta de Gemini. Revisa tu clave y cuota en aistudio.google.com');
+    async function buscar() {
+        const query = document.getElementById('qInput').value.trim() || qActual;
+        const key = document.getElementById('apiKey').value.trim();
+        
+        if(!key) {
+            alert('Por favor, ingresa tu API Key de Gemini.');
+            return;
+        }
 
-    const clean = raw.replace(/```json|```/g,'').trim();
-    let parsed;
-    try {
-      const m = clean.match(/\{[\s\S]*\}/);
-      parsed = JSON.parse(m ? m[0] : clean);
-    } catch(e) {
-      throw new Error('Respuesta no interpretable. Intenta de nuevo.');
+        document.getElementById('btnQ').disabled = true;
+        document.getElementById('stxt').textContent = 'Analizando boletines oficiales...';
+        
+        const prompt = `Actúa como un experto legal en Colombia. Busca y resume las normas más recientes (Leyes, Decretos o Resoluciones) sobre: "${query}". 
+        Hoy es 16 de abril de 2026. 
+        Responde exclusivamente en formato JSON:
+        {"normas":[{"tipo":"","numero":"","entidad":"","titulo":"","resumen":"","url":""}],"contexto":""}`;
+
+        try {
+            const res = await fetch(`${GURL}?key=${key}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    contents: [{parts: [{text: prompt}]}]
+                })
+            });
+
+            const data = await res.json();
+            const text = data.candidates[0].content.parts[0].text;
+            const cleanJson = text.replace(/```json|```/g, '').trim();
+            const parsed = JSON.parse(cleanJson);
+
+            renderResults(parsed.normas);
+            document.getElementById('stxt').textContent = 'Resultados actualizados.';
+        } catch (e) {
+            console.error(e);
+            document.getElementById('results').innerHTML = '<p style="color:red">Error al conectar con la IA. Verifica tu API Key.</p>';
+        } finally {
+            document.getElementById('btnQ').disabled = false;
+        }
     }
 
-    const normas = parsed.normas || [];
-    if(!normas.length) throw new Error('No se encontraron normas. Prueba con otros términos.');
-
-    let html = '';
-    if(parsed.contexto) html += `<div class="ctxbox">${parsed.contexto}</div>`;
-
-    normas.forEach(n => {
-      const meta = [n.numero,n.entidad,n.fecha].filter(Boolean).map(x=>`<span>${x}</span>`).join('');
-      html += `<div class="norm-card" data-t="${dataT(n.tipo)}">
-        <div class="ch"><div class="ct">${n.titulo||'Sin título'}</div><span class="badge ${badgeClass(n.tipo)}">${n.tipo||'Norma'}</span></div>
-        ${meta?`<div class="cm">${meta}</div>`:''}
-        <div class="cs">${n.resumen||''}</div>
-        ${n.url?`<a class="cl" href="${n.url}" target="_blank">Ver norma oficial ↗</a>`:''}
-      </div>`;
-    });
-
-    document.getElementById('results').innerHTML = html;
-    setS(normas.length + ' norma' + (normas.length!==1?'s':'') + ' encontrada' + (normas.length!==1?'s':'') + ' · Google Gemini', 'ok');
-
-  } catch(e) {
-    document.getElementById('results').innerHTML = `<div class="errbox">⚠ ${e.message}</div>`;
-    setS('Error en la consulta.');
-  }
-
-  document.getElementById('btnQ').disabled = false;
-}
-
-window.addEventListener('load', () => {
-  const s = localStorage.getItem('vphm_gk');
-  if(s) document.getElementById('apiKey').value = s;
-});
+    function renderResults(normas) {
+        const container = document.getElementById('results');
+        container.innerHTML = '';
+        normas.forEach(n => {
+            container.innerHTML += `
+                <div class="norm-card">
+                    <div class="ch">
+                        <div class="ct">${n.titulo}</div>
+                        <span class="badge bl">${n.tipo}</span>
+                    </div>
+                    <div style="font-size:11px; color:var(--gold-dim); margin-bottom:8px">${n.numero} | ${n.entidad}</div>
+                    <div class="cs">${n.resumen}</div>
+                </div>
+            `;
+        });
+    }
 </script>
 </body>
 </html>

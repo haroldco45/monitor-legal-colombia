@@ -4,176 +4,131 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monitor Legal Colombia — VIBRAS POSITIVAS HM</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --gold:#C9A84C;--gold-light:#E2C06A;--gold-dim:#8A6D2F;
-            --dark-bg:#0D0D0E;--dark-card:#1A1A1D;--dark-border:#2A2A2F;
+            --gold:#C9A84C; --gold-light:#E2C06A; --gold-dim:#8A6D2F;
+            --dark-bg:#0D0D0E; --dark-card:#1A1A1D; --dark-border:#2A2A2F;
             --dark-border-gold:rgba(201,168,76,0.25);
-            --text-primary:#F0EAD6;--text-secondary:#9A8F7A;--text-muted:#5A5347;
-            --teal:#1D9E75;--teal-dim:rgba(29,158,117,0.15);
-            --blue-dim:rgba(55,138,221,0.15);--red-dim:rgba(226,75,74,0.12);--amber-dim:rgba(239,159,39,0.15);
+            --text-primary:#F0EAD6; --text-secondary:#9A8F7A; --text-muted:#5A5347;
+            --teal:#1D9E75; --teal-dim:rgba(29,158,117,0.15);
         }
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        body{background:var(--dark-bg);color:var(--text-primary);font-family:'Source Serif 4',serif;font-size:16px;line-height:1.7;min-height:100vh}
-        body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 10%,rgba(201,168,76,0.04) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(29,158,117,0.03) 0%,transparent 70%);pointer-events:none;z-index:0}
-        .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 1.5rem 4rem}
-        header{padding:3rem 0 2rem;border-bottom:1px solid var(--dark-border-gold);margin-bottom:2.5rem}
-        .orn{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem}
-        .orn-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
-        .orn-ico{font-size:18px;color:var(--gold);letter-spacing:8px}
-        header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--gold-light);letter-spacing:.02em;line-height:1.2;margin-bottom:.4rem}
-        header h1 span{color:var(--text-primary);font-weight:400}
-        header p{font-size:14px;color:var(--text-secondary);font-style:italic}
-        .hbadge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);border:1px solid rgba(29,158,117,0.3);border-radius:3px;padding:3px 8px;margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
+        body{background:var(--dark-bg);color:var(--text-primary);font-family:'Source Serif 4',serif;line-height:1.7;min-height:100vh}
+        .wrap{max-width:860px;margin:0 auto;padding:0 1.5rem 4rem;position:relative;z-index:1}
         
-        .api-box{background:var(--dark-card);border:1px solid var(--dark-border-gold);border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
-        .api-box label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:8px}
+        header{padding:3rem 0 2rem;border-bottom:1px solid var(--dark-border-gold);margin-bottom:2.5rem;text-align:center}
+        header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,40px);color:var(--gold-light);margin-bottom:.4rem}
+        header h1 span{color:var(--text-primary);font-weight:400}
+        
+        .api-box{background:var(--dark-card);border:1px solid var(--dark-border-gold);border-radius:8px;padding:1.2rem;margin-bottom:2rem}
         .api-row{display:flex;gap:8px}
-        .api-box input{flex:1;background:var(--dark-bg);border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-primary);outline:none}
-        .btn-eye{background:transparent;border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace}
+        input, button{border-radius:5px;outline:none}
+        input{flex:1;background:var(--dark-bg);border:1px solid var(--dark-border);padding:10px;color:var(--text-primary);font-family:'JetBrains Mono',monospace}
+        
+        .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem;justify-content:center}
+        .pill{padding:6px 14px;font-size:13px;border-radius:20px;border:1px solid var(--dark-border);background:transparent;color:var(--text-secondary);cursor:pointer;transition:.2s}
+        .pill.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold-light)}
 
-        .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
-        .pill{padding:6px 14px;font-size:13px;border-radius:20px;border:1px solid var(--dark-border);background:transparent;color:var(--text-secondary);cursor:pointer;transition:all .2s}
-        .pill.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold-light);font-weight:600}
+        .btn-q{padding:12px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;font-weight:700;cursor:pointer;font-family:'Playfair Display',serif}
+        
+        .norm-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:1.5rem;margin-bottom:1rem;border-left:4px solid var(--gold-dim)}
+        .ct{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:8px}
+        .cs{font-size:0.95rem;color:var(--text-secondary)}
+        .err{color:#ff6b6b;background:rgba(255,107,107,0.1);padding:1rem;border-radius:5px;border:1px solid #ff6b6b;font-family:'JetBrains Mono',monospace;font-size:13px}
 
-        .sw{display:flex;gap:10px;margin-bottom:1.5rem}
-        .sw input{flex:1;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;padding:10px 16px;color:var(--text-primary);outline:none}
-        .btn-q{padding:10px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;border-radius:6px;color:#0D0D0E;font-family:'Playfair Display',serif;font-weight:600;cursor:pointer}
-
-        .sbar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-secondary);margin-bottom:1.5rem}
-        .sdot.spin{background:var(--gold);animation:pulse 1s infinite}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-
-        .norm-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:14px;position:relative;animation:fadeUp .35s ease both}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-        .ch{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
-        .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-primary)}
-        .badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:3px;text-transform:uppercase}
-        .bl{background:var(--teal-dim);color:#5DCAA5;border:1px solid rgba(29,158,117,.2)}
-        .cs{font-size:14px;color:var(--text-secondary);font-style:italic}
-        .cl{display:inline-flex;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-decoration:none}
-
-        .div{display:flex;align-items:center;gap:10px;margin:2rem 0 1.5rem}
-        .dl{flex:1;height:1px;background:var(--dark-border)}
-        .dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase}
-
-        footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--dark-border-gold);text-align:center}
+        footer{margin-top:4rem;text-align:center;border-top:1px solid var(--dark-border-gold);padding-top:2rem}
+        .brand-footer{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--gold-dim)}
     </style>
 </head>
 <body>
 <div class="wrap">
     <header>
-        <div class="orn"><div class="orn-line"></div><span class="orn-ico">⚖ ⚖ ⚖</span><div class="orn-line"></div></div>
         <h1>Monitor Legal <span>Colombia</span></h1>
-        <p>Inteligencia Artificial aplicada al Derecho — VIBRAS POSITIVAS HM</p>
-        <div class="hbadge">Sistema Actualizado 2026</div>
+        <p>Inteligencia Artificial por VIBRAS POSITIVAS HM</p>
     </header>
 
     <div class="api-box">
-        <label>🔑 Configuración de IA (Google Gemini Key)</label>
+        <label style="font-size:11px; color:var(--gold-dim); display:block; margin-bottom:5px">API KEY DE GOOGLE GEMINI</label>
         <div class="api-row">
-            <input type="password" id="apiKey" placeholder="Pega tu API Key aquí..." />
-            <button class="btn-eye" onclick="toggleKey()">Ver</button>
+            <input type="password" id="apiKey" placeholder="AIzaSy..." />
+            <button onclick="buscar()" class="btn-q">CONSULTAR</button>
         </div>
     </div>
 
     <div class="filters">
-        <button class="pill active" data-q="normas leyes decretos nuevos Colombia 2025 2026">Todas</button>
-        <button class="pill" data-q="reforma laboral y pensional Colombia 2025 2026">Laboral/Pensional</button>
-        <button class="pill" data-q="normas tributarias DIAN Colombia 2026">Tributario</button>
+        <button class="pill active" onclick="setQ('Leyes y decretos nuevos Colombia 2026', this)">General</button>
+        <button class="pill" onclick="setQ('Reforma laboral Colombia 2026', this)">Laboral</button>
+        <button class="pill" onclick="setQ('Nuevas resoluciones DIAN 2026', this)">Tributario</button>
     </div>
 
-    <div class="sw">
-        <input type="text" id="qInput" placeholder="Búsqueda específica (ej: decretos minenergia)..." />
-        <button class="btn-q" id="btnQ" onclick="buscar()">Consultar</button>
-    </div>
-
-    <div class="sbar" id="sbar">
-        <span id="stxt">Listo para monitorear el Diario Oficial.</span>
-    </div>
-
+    <div id="status" style="text-align:center; font-size:13px; margin-bottom:1rem; color:var(--gold)"></div>
     <div id="results"></div>
 
-    <div class="div"><div class="dl"></div><span class="dt">VIBRAS POSITIVAS HM</span><div class="dl"></div></div>
-
     <footer>
-        <p>© 2026 VIBRAS POSITIVAS HM — Derechos de Autor Reservados</p>
-        <p style="font-size:9px; margin-top:10px; color:var(--text-muted)">PROYECTO DESARROLLADO BAJO LOS ESTÁNDARES DE VIBRAS POSITIVAS</p>
+        <div class="brand-footer">VIBRAS POSITIVAS HM</div>
+        <p style="font-size:10px; color:var(--text-muted); margin-top:10px">SISTEMA DE MONITOREO LEGAL AUTOMATIZADO © 2026</p>
     </footer>
 </div>
 
 <script>
-    const GURL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent';
-    let qActual = 'normas leyes decretos nuevos Colombia 2025 2026';
+    let currentQ = 'Leyes y decretos nuevos Colombia 2026';
 
-    document.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
-        document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        qActual = b.dataset.q;
-    }));
-
-    function toggleKey() {
-        const i = document.getElementById('apiKey');
-        i.type = i.type === 'password' ? 'text' : 'password';
+    function setQ(q, el) {
+        currentQ = q;
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
     }
 
     async function buscar() {
-        const query = document.getElementById('qInput').value.trim() || qActual;
-        const key = document.getElementById('apiKey').value.trim();
+        const key = document.getElementById('apiKey').value.trim(); // .trim() elimina espacios vacíos
+        const container = document.getElementById('results');
+        const status = document.getElementById('status');
         
         if(!key) {
-            alert('Por favor, ingresa tu API Key de Gemini.');
+            alert("Por favor ingresa tu API Key");
             return;
         }
 
-        document.getElementById('btnQ').disabled = true;
-        document.getElementById('stxt').textContent = 'Analizando boletines oficiales...';
-        
-        const prompt = `Actúa como un experto legal en Colombia. Busca y resume las normas más recientes (Leyes, Decretos o Resoluciones) sobre: "${query}". 
-        Hoy es 16 de abril de 2026. 
-        Responde exclusivamente en formato JSON:
-        {"normas":[{"tipo":"","numero":"","entidad":"","titulo":"","resumen":"","url":""}],"contexto":""}`;
+        status.innerHTML = "Consultando base de datos legal...";
+        container.innerHTML = "";
+
+        const prompt = `Eres un experto legal colombiano de la firma Vibras Positivas HM. 
+        Analiza y lista las normas más recientes sobre: ${currentQ}. 
+        Responde en formato JSON puro: {"normas":[{"titulo":"","resumen":"","link":""}]}`;
 
         try {
-            const res = await fetch(`${GURL}?key=${key}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    contents: [{parts: [{text: prompt}]}]
-                })
+                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
             });
 
-            const data = await res.json();
-            const text = data.candidates[0].content.parts[0].text;
-            const cleanJson = text.replace(/```json|```/g, '').trim();
+            const data = await response.json();
+            
+            if(data.error) {
+                throw new Error(data.error.message);
+            }
+
+            const rawText = data.candidates[0].content.parts[0].text;
+            const cleanJson = rawText.replace(/```json|```/g, "").trim();
             const parsed = JSON.parse(cleanJson);
 
-            renderResults(parsed.normas);
-            document.getElementById('stxt').textContent = 'Resultados actualizados.';
-        } catch (e) {
-            console.error(e);
-            document.getElementById('results').innerHTML = '<p style="color:red">Error al conectar con la IA. Verifica tu API Key.</p>';
-        } finally {
-            document.getElementById('btnQ').disabled = false;
-        }
-    }
-
-    function renderResults(normas) {
-        const container = document.getElementById('results');
-        container.innerHTML = '';
-        normas.forEach(n => {
-            container.innerHTML += `
-                <div class="norm-card">
-                    <div class="ch">
+            status.innerHTML = "✅ Consulta exitosa";
+            parsed.normas.forEach(n => {
+                container.innerHTML += `
+                    <div class="norm-card">
                         <div class="ct">${n.titulo}</div>
-                        <span class="badge bl">${n.tipo}</span>
+                        <div class="cs">${marked.parse(n.resumen)}</div>
                     </div>
-                    <div style="font-size:11px; color:var(--gold-dim); margin-bottom:8px">${n.numero} | ${n.entidad}</div>
-                    <div class="cs">${n.resumen}</div>
-                </div>
-            `;
-        });
+                `;
+            });
+
+        } catch (e) {
+            status.innerHTML = "";
+            container.innerHTML = `<div class="err">⚠ ERROR: ${e.message}<br><br>Tip: Verifica que tu clave no tenga espacios y que tengas cuota disponible en Google AI Studio.</div>`;
+        }
     }
 </script>
 </body>

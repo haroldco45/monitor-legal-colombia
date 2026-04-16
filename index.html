@@ -7,735 +7,282 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E2C06A;
-    --gold-dim: #8A6D2F;
-    --dark-bg: #0D0D0E;
-    --dark-surface: #141416;
-    --dark-card: #1A1A1D;
-    --dark-border: #2A2A2F;
-    --dark-border-gold: rgba(201,168,76,0.25);
-    --text-primary: #F0EAD6;
-    --text-secondary: #9A8F7A;
-    --text-muted: #5A5347;
-    --teal: #1D9E75;
-    --teal-dim: rgba(29,158,117,0.15);
-    --blue-dim: rgba(55,138,221,0.15);
-    --red-dim: rgba(226,75,74,0.12);
-    --amber-dim: rgba(239,159,39,0.15);
+    --gold:#C9A84C;--gold-light:#E2C06A;--gold-dim:#8A6D2F;
+    --dark-bg:#0D0D0E;--dark-card:#1A1A1D;--dark-border:#2A2A2F;
+    --dark-border-gold:rgba(201,168,76,0.25);
+    --text-primary:#F0EAD6;--text-secondary:#9A8F7A;--text-muted:#5A5347;
+    --teal:#1D9E75;--teal-dim:rgba(29,158,117,0.15);
+    --blue-dim:rgba(55,138,221,0.15);--red-dim:rgba(226,75,74,0.12);--amber-dim:rgba(239,159,39,0.15);
   }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--dark-bg);color:var(--text-primary);font-family:'Source Serif 4',serif;font-size:16px;line-height:1.7;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 10%,rgba(201,168,76,0.04) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(29,158,117,0.03) 0%,transparent 70%);pointer-events:none;z-index:0}
+  .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 1.5rem 4rem}
+  header{padding:3rem 0 2rem;border-bottom:1px solid var(--dark-border-gold);margin-bottom:2.5rem}
+  .orn{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem}
+  .orn-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent)}
+  .orn-ico{font-size:18px;color:var(--gold);letter-spacing:8px}
+  header h1{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,40px);font-weight:700;color:var(--gold-light);letter-spacing:.02em;line-height:1.2;margin-bottom:.4rem}
+  header h1 span{color:var(--text-primary);font-weight:400}
+  header p{font-size:14px;color:var(--text-secondary);font-style:italic}
+  .hbadge{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);border:1px solid rgba(29,158,117,0.3);border-radius:3px;padding:3px 8px;margin-top:12px;letter-spacing:.08em;text-transform:uppercase}
+  .hbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .api-box{background:var(--dark-card);border:1px solid var(--dark-border-gold);border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+  .api-box label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:8px}
+  .api-row{display:flex;gap:8px}
+  .api-box input{flex:1;background:var(--dark-bg);border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-primary);outline:none;transition:border-color .2s}
+  .api-box input:focus{border-color:var(--gold-dim)}
+  .btn-eye{background:transparent;border:1px solid var(--dark-border);border-radius:5px;padding:8px 12px;color:var(--text-secondary);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .2s}
+  .btn-eye:hover{border-color:var(--gold-dim);color:var(--gold)}
+  .api-hint{font-size:11px;color:var(--text-muted);margin-top:6px;font-style:italic}
+  .api-hint a{color:var(--gold-dim);text-decoration:none}
+  .api-hint a:hover{color:var(--gold)}
 
-  html { scroll-behavior: smooth; }
+  .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-dim);margin-bottom:10px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
+  .pill{padding:6px 14px;font-size:13px;border-radius:20px;border:1px solid var(--dark-border);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:'Source Serif 4',serif;transition:all .2s}
+  .pill:hover{border-color:var(--gold-dim);color:var(--gold-light)}
+  .pill.active{background:rgba(201,168,76,.12);border-color:var(--gold);color:var(--gold-light);font-weight:600}
 
-  body {
-    background: var(--dark-bg);
-    color: var(--text-primary);
-    font-family: 'Source Serif 4', serif;
-    font-size: 16px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
+  .sw{display:flex;gap:10px;margin-bottom:1.5rem}
+  .sw input{flex:1;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;padding:10px 16px;font-family:'Source Serif 4',serif;font-size:15px;color:var(--text-primary);outline:none;transition:border-color .2s}
+  .sw input::placeholder{color:var(--text-muted);font-style:italic}
+  .sw input:focus{border-color:var(--gold-dim)}
+  .btn-q{padding:10px 24px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:none;border-radius:6px;color:#0D0D0E;font-family:'Playfair Display',serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;white-space:nowrap;letter-spacing:.03em}
+  .btn-q:hover{opacity:.88} .btn-q:active{transform:scale(.98)} .btn-q:disabled{opacity:.4;cursor:not-allowed}
 
-  /* FONDO DECORATIVO */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(201,168,76,0.04) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(29,158,117,0.03) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  .sbar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-secondary);margin-bottom:1.5rem;transition:border-color .3s}
+  .sbar.on{border-color:var(--gold-dim)}
+  .sdot{width:7px;height:7px;border-radius:50%;background:var(--text-muted);flex-shrink:0;transition:background .3s}
+  .sdot.ok{background:var(--teal)}
+  .sdot.spin{background:var(--gold);animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .wrap {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-  }
+  .norm-card{background:var(--dark-card);border:1px solid var(--dark-border);border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color .2s,transform .15s;animation:fadeUp .35s ease both}
+  .norm-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ca,var(--dark-border));transition:background .2s}
+  .norm-card:hover{border-color:var(--dark-border-gold);transform:translateX(3px)}
+  .norm-card:hover::before{background:var(--gold)}
+  .norm-card[data-t=ley]{--ca:#1D9E75} .norm-card[data-t=decreto]{--ca:#378ADD}
+  .norm-card[data-t=resolucion]{--ca:#EF9F27} .norm-card[data-t=circular]{--ca:#D85A30}
+  .norm-card:nth-child(1){animation-delay:.05s} .norm-card:nth-child(2){animation-delay:.12s}
+  .norm-card:nth-child(3){animation-delay:.19s} .norm-card:nth-child(4){animation-delay:.26s}
+  .norm-card:nth-child(5){animation-delay:.33s} .norm-card:nth-child(6){animation-delay:.40s}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-  /* HEADER */
-  header {
-    padding: 3rem 0 2rem;
-    border-bottom: 1px solid var(--dark-border-gold);
-    margin-bottom: 2.5rem;
-    position: relative;
-  }
+  .ch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px}
+  .ct{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--text-primary);line-height:1.4}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;padding:3px 9px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+  .bl{background:var(--teal-dim);color:#5DCAA5;border:1px solid rgba(29,158,117,.2)}
+  .bd{background:var(--blue-dim);color:#85B7EB;border:1px solid rgba(55,138,221,.2)}
+  .br{background:var(--amber-dim);color:#FAC775;border:1px solid rgba(239,159,39,.2)}
+  .bc{background:var(--red-dim);color:#F0997B;border:1px solid rgba(216,90,48,.2)}
+  .bo{background:rgba(255,255,255,.04);color:var(--text-secondary);border:1px solid var(--dark-border)}
+  .cm{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+  .cs{font-size:14px;color:var(--text-secondary);line-height:1.65;font-style:italic}
+  .cl{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);text-decoration:none;transition:color .2s}
+  .cl:hover{color:var(--gold)}
 
-  .header-ornament {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1.2rem;
-  }
+  .empty{text-align:center;padding:4rem 1rem;color:var(--text-muted)}
+  .empty-ico{font-size:40px;display:block;margin-bottom:1rem;color:var(--gold-dim);opacity:.6}
+  .empty p{font-size:14px;font-style:italic}
+  .errbox{background:rgba(162,45,45,.1);border:1px solid rgba(162,45,45,.3);border-radius:6px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#F09595;line-height:1.6;word-break:break-word}
+  .ctxbox{background:rgba(201,168,76,.06);border:1px solid var(--dark-border-gold);border-radius:6px;padding:10px 14px;font-size:13px;color:var(--text-secondary);font-style:italic;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:8px}
+  .ctxbox::before{content:'§';color:var(--gold-dim);font-family:'Playfair Display',serif;font-size:18px;line-height:1;flex-shrink:0}
 
-  .ornament-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-  }
+  .div{display:flex;align-items:center;gap:10px;margin:2rem 0 1.5rem}
+  .dl{flex:1;height:1px;background:var(--dark-border)}
+  .dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em}
 
-  .ornament-icon {
-    font-size: 18px;
-    color: var(--gold);
-    letter-spacing: 8px;
-  }
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--dark-border-gold);text-align:center}
+  .fo{color:var(--gold-dim);font-size:14px;margin-bottom:8px;letter-spacing:6px}
+  footer p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em}
 
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 5vw, 40px);
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    margin-bottom: 0.4rem;
-  }
-
-  header h1 span {
-    color: var(--text-primary);
-    font-weight: 400;
-  }
-
-  header p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-style: italic;
-    font-family: 'Source Serif 4', serif;
-  }
-
-  .header-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--teal);
-    border: 1px solid rgba(29,158,117,0.3);
-    border-radius: 3px;
-    padding: 3px 8px;
-    margin-top: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .header-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--teal);
-    animation: blink 2s infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  /* SECCIÓN API KEY */
-  .apikey-section {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border-gold);
-    border-radius: 8px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .apikey-section label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .apikey-row { display: flex; gap: 8px; }
-
-  .apikey-section input[type="password"],
-  .apikey-section input[type="text"] {
-    flex: 1;
-    background: var(--dark-bg);
-    border: 1px solid var(--dark-border);
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--text-primary);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .apikey-section input:focus { border-color: var(--gold-dim); }
-
-  .btn-show {
-    background: transparent;
-    border: 1px solid var(--dark-border);
-    border-radius: 5px;
-    padding: 8px 12px;
-    color: var(--text-secondary);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .btn-show:hover { border-color: var(--gold-dim); color: var(--gold); }
-
-  .apikey-hint {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 6px;
-    font-style: italic;
-  }
-  .apikey-hint a { color: var(--gold-dim); text-decoration: none; }
-  .apikey-hint a:hover { color: var(--gold); }
-
-  /* FILTROS */
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--gold-dim);
-    margin-bottom: 10px;
-  }
-
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
-
-  .pill {
-    padding: 6px 14px;
-    font-size: 13px;
-    border-radius: 20px;
-    border: 1px solid var(--dark-border);
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-family: 'Source Serif 4', serif;
-    transition: all 0.2s;
-  }
-  .pill:hover { border-color: var(--gold-dim); color: var(--gold-light); }
-  .pill.active {
-    background: rgba(201,168,76,0.12);
-    border-color: var(--gold);
-    color: var(--gold-light);
-    font-weight: 600;
-  }
-
-  /* BÚSQUEDA */
-  .search-wrap { display: flex; gap: 10px; margin-bottom: 1.5rem; }
-
-  .search-wrap input {
-    flex: 1;
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 6px;
-    padding: 10px 16px;
-    font-family: 'Source Serif 4', serif;
-    font-size: 15px;
-    color: var(--text-primary);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .search-wrap input::placeholder { color: var(--text-muted); font-style: italic; }
-  .search-wrap input:focus { border-color: var(--gold-dim); }
-
-  .btn-buscar {
-    padding: 10px 24px;
-    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-    border: none;
-    border-radius: 6px;
-    color: #0D0D0E;
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
-    white-space: nowrap;
-    letter-spacing: 0.03em;
-  }
-  .btn-buscar:hover { opacity: 0.88; }
-  .btn-buscar:active { transform: scale(0.98); }
-  .btn-buscar:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  /* STATUS */
-  .status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 14px;
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    transition: border-color 0.3s;
-  }
-  .status.active { border-color: var(--gold-dim); }
-
-  .status-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--text-muted);
-    flex-shrink: 0;
-    transition: background 0.3s;
-  }
-  .status-dot.on { background: var(--teal); }
-  .status-dot.loading {
-    background: var(--gold);
-    animation: pulse 1s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
-
-  /* CARDS */
-  .results { margin-top: 0.5rem; }
-
-  .norm-card {
-    background: var(--dark-card);
-    border: 1px solid var(--dark-border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 14px;
-    transition: border-color 0.2s, transform 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-  .norm-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--card-accent, var(--dark-border));
-    transition: background 0.2s;
-  }
-  .norm-card:hover {
-    border-color: var(--dark-border-gold);
-    transform: translateX(3px);
-  }
-  .norm-card:hover::before { background: var(--gold); }
-
-  .norm-card[data-tipo="ley"] { --card-accent: #1D9E75; }
-  .norm-card[data-tipo="decreto"] { --card-accent: #378ADD; }
-  .norm-card[data-tipo="resolucion"] { --card-accent: #EF9F27; }
-  .norm-card[data-tipo="circular"] { --card-accent: #D85A30; }
-
-  .card-head {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.4;
-  }
-
-  .badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 3px 9px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .badge-ley { background: var(--teal-dim); color: #5DCAA5; border: 1px solid rgba(29,158,117,0.2); }
-  .badge-decreto { background: var(--blue-dim); color: #85B7EB; border: 1px solid rgba(55,138,221,0.2); }
-  .badge-resolucion { background: var(--amber-dim); color: #FAC775; border: 1px solid rgba(239,159,39,0.2); }
-  .badge-circular { background: var(--red-dim); color: #F0997B; border: 1px solid rgba(216,90,48,0.2); }
-  .badge-otro { background: rgba(255,255,255,0.04); color: var(--text-secondary); border: 1px solid var(--dark-border); }
-
-  .card-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 12px;
-  }
-  .card-meta span { display: flex; align-items: center; gap: 4px; }
-
-  .card-summary {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    font-style: italic;
-  }
-
-  .card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--gold-dim);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .card-link:hover { color: var(--gold); }
-
-  /* ESTADO VACÍO / ERROR */
-  .empty-state {
-    text-align: center;
-    padding: 4rem 1rem;
-    color: var(--text-muted);
-  }
-  .empty-state .empty-icon {
-    font-size: 40px;
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--gold-dim);
-    opacity: 0.6;
-  }
-  .empty-state p { font-size: 14px; font-style: italic; }
-
-  .error-box {
-    background: rgba(162,45,45,0.1);
-    border: 1px solid rgba(162,45,45,0.3);
-    border-radius: 6px;
-    padding: 12px 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: #F09595;
-    margin-bottom: 1rem;
-  }
-
-  .contexto-box {
-    background: rgba(201,168,76,0.06);
-    border: 1px solid var(--dark-border-gold);
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-style: italic;
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .contexto-box::before {
-    content: '§';
-    color: var(--gold-dim);
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  /* DIVIDER */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 2rem 0 1.5rem;
-  }
-  .divider-line { flex: 1; height: 1px; background: var(--dark-border); }
-  .divider-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  /* FOOTER */
-  footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--dark-border-gold);
-    text-align: center;
-  }
-  .footer-ornament { color: var(--gold-dim); font-size: 14px; margin-bottom: 8px; letter-spacing: 6px; }
-  footer p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  /* ANIMACIÓN ENTRADA CARDS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .norm-card { animation: fadeUp 0.35s ease both; }
-  .norm-card:nth-child(1) { animation-delay: 0.05s; }
-  .norm-card:nth-child(2) { animation-delay: 0.12s; }
-  .norm-card:nth-child(3) { animation-delay: 0.19s; }
-  .norm-card:nth-child(4) { animation-delay: 0.26s; }
-  .norm-card:nth-child(5) { animation-delay: 0.33s; }
-  .norm-card:nth-child(6) { animation-delay: 0.40s; }
-
-  @media (max-width: 600px) {
-    .search-wrap { flex-direction: column; }
-    .card-head { flex-direction: column; gap: 6px; }
-    .apikey-row { flex-direction: column; }
-  }
+  @media(max-width:600px){.sw,.api-row{flex-direction:column}.ch{flex-direction:column;gap:6px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <div class="header-ornament">
-      <div class="ornament-line"></div>
-      <span class="ornament-icon">⚖ ⚖ ⚖</span>
-      <div class="ornament-line"></div>
-    </div>
+    <div class="orn"><div class="orn-line"></div><span class="orn-ico">⚖ ⚖ ⚖</span><div class="orn-line"></div></div>
     <h1>Monitor Legal <span>Colombia</span></h1>
     <p>Alertas de normas, leyes y decretos nuevos — búsqueda con inteligencia artificial en tiempo real</p>
-    <div class="header-badge">IA activa · Diario Oficial · Fuentes oficiales</div>
+    <div class="hbadge">IA activa · Diario Oficial · Fuentes oficiales</div>
   </header>
 
-  <!-- API KEY -->
-  <div class="apikey-section">
-    <label>🔑 Clave API de OpenRouter</label>
-    <div class="apikey-row">
-      <input type="password" id="apiKeyInput" placeholder="sk-or-v1-..." autocomplete="off" />
-      <button class="btn-show" onclick="toggleKey()">Mostrar</button>
+  <div class="api-box">
+    <label>🔑 Clave API de Google Gemini (gratuita, sin tarjeta)</label>
+    <div class="api-row">
+      <input type="password" id="apiKey" placeholder="AIzaSy..." autocomplete="off" />
+      <button class="btn-eye" onclick="toggleKey()">Mostrar</button>
     </div>
-    <p class="apikey-hint">
-      Obtén tu clave gratuita en <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a>.
-      Se guarda solo en tu navegador, nunca se envía a ningún servidor externo.
-    </p>
+    <p class="api-hint">Obtén tu clave gratis en <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com/app/apikey</a>. Se guarda solo en tu navegador.</p>
   </div>
 
-  <!-- FILTROS -->
-  <div class="section-label">Categoría</div>
-  <div class="filters" id="filtros">
+  <div class="slabel">Categoría</div>
+  <div class="filters">
     <button class="pill active" data-q="normas leyes decretos nuevos Colombia 2025 2026">Todas</button>
     <button class="pill" data-q="leyes nuevas aprobadas Colombia Congreso 2025 2026">Leyes</button>
     <button class="pill" data-q="decretos presidenciales nuevos Colombia 2025 2026">Decretos</button>
     <button class="pill" data-q="resoluciones ministeriales nuevas Colombia 2025 2026">Resoluciones</button>
     <button class="pill" data-q="normas laborales reforma laboral Colombia 2025 2026">Laboral</button>
-    <button class="pill" data-q="normas tributarias DIAN reforma tributaria Colombia 2025 2026">Tributario</button>
+    <button class="pill" data-q="normas tributarias DIAN Colombia 2025 2026">Tributario</button>
     <button class="pill" data-q="normas salud Minsalud Colombia 2025 2026">Salud</button>
-    <button class="pill" data-q="normas comerciales SIC superintendencia Colombia 2025 2026">Comercial</button>
+    <button class="pill" data-q="normas comerciales SIC Colombia 2025 2026">Comercial</button>
     <button class="pill" data-q="normas pensional Colpensiones Colombia 2025 2026">Pensional</button>
-    <button class="pill" data-q="normas ambientales ANLA MinAmbiente Colombia 2025 2026">Ambiental</button>
+    <button class="pill" data-q="normas ambientales ANLA Colombia 2025 2026">Ambiental</button>
   </div>
 
-  <!-- BÚSQUEDA -->
-  <div class="search-wrap">
-    <input type="text" id="queryInput"
-      placeholder="Ej: reforma laboral 2025, resoluciones DIAN, ley de vivienda..." />
-    <button class="btn-buscar" id="btnBuscar" onclick="buscar()">Consultar</button>
+  <div class="sw">
+    <input type="text" id="qInput" placeholder="Ej: reforma laboral 2025, resoluciones DIAN, ley de vivienda..." />
+    <button class="btn-q" id="btnQ" onclick="buscar()">Consultar</button>
   </div>
 
-  <!-- STATUS -->
-  <div class="status" id="statusBar">
-    <div class="status-dot" id="statusDot"></div>
-    <span id="statusText">Selecciona una categoría o escribe una búsqueda para comenzar.</span>
+  <div class="sbar" id="sbar">
+    <div class="sdot" id="sdot"></div>
+    <span id="stxt">Selecciona una categoría o escribe una búsqueda para comenzar.</span>
   </div>
 
-  <!-- RESULTADOS -->
-  <div class="results" id="results">
-    <div class="empty-state">
-      <span class="empty-icon">⚖</span>
-      <p>Las normas más recientes aparecerán aquí.</p>
-    </div>
+  <div id="results">
+    <div class="empty"><span class="empty-ico">⚖</span><p>Las normas más recientes aparecerán aquí.</p></div>
   </div>
 
-  <div class="divider">
-    <div class="divider-line"></div>
-    <span class="divider-text">Vibras Positivas HM</span>
-    <div class="divider-line"></div>
-  </div>
+  <div class="div"><div class="dl"></div><span class="dt">Vibras Positivas HM</span><div class="dl"></div></div>
 
   <footer>
-    <div class="footer-ornament">§ § §</div>
+    <div class="fo">§ § §</div>
     <p>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados · Colombia 2026</p>
     <p style="margin-top:4px;color:#3A3530">Esta app no reemplaza asesoría jurídica profesional</p>
   </footer>
 
 </div>
-
 <script>
-const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'meta-llama/llama-3.3-70b-instruct:free';
+const GURL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+let qActual = 'normas leyes decretos nuevos Colombia 2025 2026';
 
-let queryActual = 'normas leyes decretos nuevos Colombia 2025 2026';
+document.querySelectorAll('.pill').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  qActual = b.dataset.q;
+  document.getElementById('qInput').value = '';
+}));
 
-document.querySelectorAll('.pill').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    queryActual = btn.dataset.q;
-    document.getElementById('queryInput').value = '';
-  });
-});
-
-document.getElementById('queryInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') buscar();
-});
+document.getElementById('qInput').addEventListener('keydown', e => { if(e.key==='Enter') buscar(); });
 
 function toggleKey() {
-  const inp = document.getElementById('apiKeyInput');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
+  const i = document.getElementById('apiKey');
+  i.type = i.type === 'password' ? 'text' : 'password';
 }
 
-function getApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (key) {
-    localStorage.setItem('vphmOpenRouterKey', key);
-    return key;
-  }
-  return localStorage.getItem('vphmOpenRouterKey') || '';
+function getKey() {
+  const k = document.getElementById('apiKey').value.trim();
+  if(k){ localStorage.setItem('vphm_gk', k); return k; }
+  return localStorage.getItem('vphm_gk') || '';
 }
 
-function setStatus(text, mode = 'idle') {
-  const dot = document.getElementById('statusDot');
-  const bar = document.getElementById('statusBar');
-  document.getElementById('statusText').textContent = text;
-  dot.className = 'status-dot';
-  bar.classList.remove('active');
-  if (mode === 'loading') { dot.classList.add('loading'); bar.classList.add('active'); }
-  if (mode === 'ok') { dot.classList.add('on'); bar.classList.add('active'); }
+function setS(txt, mode) {
+  document.getElementById('stxt').textContent = txt;
+  const d = document.getElementById('sdot');
+  const b = document.getElementById('sbar');
+  d.className = 'sdot';
+  b.classList.remove('on');
+  if(mode==='spin'){ d.classList.add('spin'); b.classList.add('on'); }
+  if(mode==='ok'){ d.classList.add('ok'); b.classList.add('on'); }
 }
 
-function tipoBadge(tipo) {
-  const t = (tipo || '').toLowerCase();
-  if (t.includes('ley')) return 'badge-ley';
-  if (t.includes('decreto')) return 'badge-decreto';
-  if (t.includes('resoluci')) return 'badge-resolucion';
-  if (t.includes('circular')) return 'badge-circular';
-  return 'badge-otro';
+function badgeClass(t) {
+  t = (t||'').toLowerCase();
+  if(t.includes('ley')) return 'bl';
+  if(t.includes('decreto')) return 'bd';
+  if(t.includes('resoluci')) return 'br';
+  if(t.includes('circular')) return 'bc';
+  return 'bo';
 }
-
-function tipoData(tipo) {
-  const t = (tipo || '').toLowerCase();
-  if (t.includes('ley')) return 'ley';
-  if (t.includes('decreto')) return 'decreto';
-  if (t.includes('resoluci')) return 'resolucion';
-  if (t.includes('circular')) return 'circular';
+function dataT(t) {
+  t = (t||'').toLowerCase();
+  if(t.includes('ley')) return 'ley';
+  if(t.includes('decreto')) return 'decreto';
+  if(t.includes('resoluci')) return 'resolucion';
+  if(t.includes('circular')) return 'circular';
   return 'otro';
 }
 
 async function buscar() {
-  const inputVal = document.getElementById('queryInput').value.trim();
-  const query = inputVal || queryActual;
+  const q = document.getElementById('qInput').value.trim() || qActual;
+  const key = getKey();
+  if(!key){ setS('Ingresa tu clave API de Google Gemini para continuar.'); document.getElementById('apiKey').focus(); return; }
 
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    setStatus('Por favor ingresa tu clave API de OpenRouter para continuar.');
-    document.getElementById('apiKeyInput').focus();
-    return;
-  }
-
-  document.getElementById('btnBuscar').disabled = true;
-  setStatus('Consultando normas recientes con IA + búsqueda web...', 'loading');
+  document.getElementById('btnQ').disabled = true;
+  setS('Consultando normas recientes con IA...', 'spin');
   document.getElementById('results').innerHTML = '';
 
-  const systemPrompt = `Eres un asistente jurídico experto en legislación colombiana. 
-Busca en fuentes oficiales (Diario Oficial, congreso.gov.co, minjusticia.gov.co, presidencia.gov.co, DIAN, Minsalud, etc.) las normas más recientes relacionadas con la consulta.
-Responde ÚNICAMENTE con JSON puro y válido, sin texto adicional, sin markdown, sin backticks. Formato exacto:
-{
-  "normas": [
-    {
-      "tipo": "Ley | Decreto | Resolución | Circular | Acuerdo",
-      "numero": "número o código",
-      "fecha": "fecha de expedición DD/MM/AAAA o solo el año",
-      "entidad": "entidad que la expidió",
-      "titulo": "título o nombre oficial de la norma",
-      "resumen": "2 a 3 oraciones: qué regula, a quién aplica, cuál es su impacto principal",
-      "url": "URL del Diario Oficial u otra fuente oficial, o cadena vacía"
-    }
-  ],
-  "contexto": "Frase de contexto general sobre estas normas (máximo 2 líneas)"
-}
-Devuelve entre 4 y 6 normas, las más recientes posible (2024-2026). Si hay reforma o proyecto de ley importante pendiente, inclúyelo aclarando que está en trámite.`;
+  const prompt = `Eres experto en legislación colombiana. Lista normas recientes relacionadas con: "${q}"
+Fecha: 16 abril 2026.
+Responde SOLO con JSON puro sin texto ni backticks:
+{"normas":[{"tipo":"Ley|Decreto|Resolución|Circular|Acuerdo","numero":"","fecha":"","entidad":"","titulo":"","resumen":"2-3 oraciones sobre qué regula y su impacto","url":""}],"contexto":""}
+Entre 4 y 6 normas de 2023-2026. Indica si alguna está en trámite.`;
 
   try {
-    const res = await fetch(OPENROUTER_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://vibraspositivas.com',
-        'X-Title': 'Monitor Legal Colombia'
-      },
+    const res = await fetch(GURL + '?key=' + key, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1400,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Consulta: ${query}\nFecha de hoy: 16 de abril de 2026` }
-        ]
+        contents:[{parts:[{text:prompt}]}],
+        generationConfig:{temperature:0.3,maxOutputTokens:1500}
       })
     });
 
-    if (!res.ok) {
-      const errData = await res.json().catch(() => ({}));
-      throw new Error(errData.error?.message || `HTTP ${res.status}`);
+    const data = await res.json();
+
+    if(!res.ok){
+      const m = data.error?.message || data.error?.status || JSON.stringify(data).slice(0,250);
+      throw new Error('HTTP ' + res.status + ': ' + m);
     }
 
-    const data = await res.json();
-    const raw = data.choices?.[0]?.message?.content || '';
-    const clean = raw.replace(/```json|```/g, '').trim();
+    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    if(!raw) throw new Error('Sin respuesta de Gemini. Revisa tu clave y cuota en aistudio.google.com');
 
+    const clean = raw.replace(/```json|```/g,'').trim();
     let parsed;
     try {
-      const match = clean.match(/\{[\s\S]*\}/);
-      parsed = JSON.parse(match ? match[0] : clean);
+      const m = clean.match(/\{[\s\S]*\}/);
+      parsed = JSON.parse(m ? m[0] : clean);
     } catch(e) {
-      throw new Error('La IA no devolvió un formato reconocible. Intenta de nuevo.');
+      throw new Error('Respuesta no interpretable. Intenta de nuevo.');
     }
 
     const normas = parsed.normas || [];
-    if (!normas.length) throw new Error('No se encontraron normas para esa búsqueda.');
+    if(!normas.length) throw new Error('No se encontraron normas. Prueba con otros términos.');
 
     let html = '';
-
-    if (parsed.contexto) {
-      html += `<div class="contexto-box">${parsed.contexto}</div>`;
-    }
+    if(parsed.contexto) html += `<div class="ctxbox">${parsed.contexto}</div>`;
 
     normas.forEach(n => {
-      const badge = tipoBadge(n.tipo);
-      const dataT = tipoData(n.tipo);
-      const metaParts = [];
-      if (n.numero) metaParts.push(`<span>${n.numero}</span>`);
-      if (n.entidad) metaParts.push(`<span>${n.entidad}</span>`);
-      if (n.fecha) metaParts.push(`<span>${n.fecha}</span>`);
-
-      html += `
-        <div class="norm-card" data-tipo="${dataT}">
-          <div class="card-head">
-            <div class="card-title">${n.titulo || 'Sin título'}</div>
-            <span class="badge ${badge}">${n.tipo || 'Norma'}</span>
-          </div>
-          ${metaParts.length ? `<div class="card-meta">${metaParts.join('')}</div>` : ''}
-          <div class="card-summary">${n.resumen || ''}</div>
-          ${n.url ? `<a class="card-link" href="${n.url}" target="_blank">Ver norma oficial ↗</a>` : ''}
-        </div>`;
+      const meta = [n.numero,n.entidad,n.fecha].filter(Boolean).map(x=>`<span>${x}</span>`).join('');
+      html += `<div class="norm-card" data-t="${dataT(n.tipo)}">
+        <div class="ch"><div class="ct">${n.titulo||'Sin título'}</div><span class="badge ${badgeClass(n.tipo)}">${n.tipo||'Norma'}</span></div>
+        ${meta?`<div class="cm">${meta}</div>`:''}
+        <div class="cs">${n.resumen||''}</div>
+        ${n.url?`<a class="cl" href="${n.url}" target="_blank">Ver norma oficial ↗</a>`:''}
+      </div>`;
     });
 
     document.getElementById('results').innerHTML = html;
-    setStatus(`${normas.length} norma${normas.length !== 1 ? 's' : ''} encontrada${normas.length !== 1 ? 's' : ''} · Fuente: IA con web search`, 'ok');
+    setS(normas.length + ' norma' + (normas.length!==1?'s':'') + ' encontrada' + (normas.length!==1?'s':'') + ' · Google Gemini', 'ok');
 
-  } catch(err) {
-    document.getElementById('results').innerHTML =
-      `<div class="error-box">Error: ${err.message}</div>`;
-    setStatus('Error en la consulta.', 'idle');
+  } catch(e) {
+    document.getElementById('results').innerHTML = `<div class="errbox">⚠ ${e.message}</div>`;
+    setS('Error en la consulta.');
   }
 
-  document.getElementById('btnBuscar').disabled = false;
+  document.getElementById('btnQ').disabled = false;
 }
 
-// Cargar clave guardada si existe
 window.addEventListener('load', () => {
-  const saved = localStorage.getItem('vphmOpenRouterKey');
-  if (saved) document.getElementById('apiKeyInput').value = saved;
+  const s = localStorage.getItem('vphm_gk');
+  if(s) document.getElementById('apiKey').value = s;
 });
 </script>
 </body>
